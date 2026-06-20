@@ -1,3 +1,25 @@
+:root{
+    --primarna-boja: gainsboro;
+    --pozadina: #f3f3f3;
+    --pozadina-container: #fcfcfc;
+}
+
 body{
     background-color: gainsboro;
+}
+
+.container{
+    width: 30%;
+    margin: auto;
+    outline-style: solid;
+    outline-width: 5px;
+    outline-color: var(--primarna-boja);
+    background-color: var(--pozadina-container);
+    padding: 2rem;
+}
+
+h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(25, 26, 24);
+    text-align: center;
 }
