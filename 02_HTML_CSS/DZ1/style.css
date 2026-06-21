@@ -9,10 +9,11 @@ body{
 }
 
 .container{
-    width: 30%;
+    width: 50%;
     margin: auto;
-    outline-style: solid;
+    outline-style: double;
     outline-width: 5px;
+    border-radius: 5px;
     outline-color: var(--primarna-boja);
     background-color: var(--pozadina-container);
     padding: 2rem;
@@ -20,6 +21,22 @@ body{
 
 h1{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    color: rgb(25, 26, 24);
+    color: rgb(22, 5, 112);
+    text-align: center;
+}
+
+h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    text-decoration: underline; 
+    text-decoration-color: orange;
+    text-underline-offset: 10px;    
+}
+
+.marker{
+    background-color: rgb(236, 201, 136);
+}
+
+.slika{
     text-align: center;
 }
