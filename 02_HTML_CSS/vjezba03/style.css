@@ -21,9 +21,42 @@ ul li a{
 }
 
 ul li a:hover{
-    color: brown;
+    color: red;
 }
 
 li.active{
-    background-color: bisque;
+    background-color: darkolivegreen;
+}
+
+main{
+    display: grid;
+    grid-template-areas: 
+    ". a a b"
+    "c d d b"
+    "e e e b"
+    ;
+    row-gap: 3rem;
+    column-gap: 3rem;
+}
+
+.a{grid-area: a;}
+.b{grid-area: b;}
+.c{grid-area: c;}
+.d{grid-area: d;}
+.e{grid-area: e;}
+
+div{
+    background-color: aliceblue;
+    border-radius: 2rem;
+    font-size: 4rem;
+    padding: 2rem;
+    border: 4px hidden;
+}
+
+footer{
+    text-align: center;
+    font-size: 3rem;
+    font-style: oblique;
+    color: darkgreen;
+    
 }
