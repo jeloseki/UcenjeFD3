@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zadaća Tablice I Forme</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="kontejner">
+
+        <span class="lokot">&#x1F512;</span>
+
+
+        <form action="https://origo.hr" method="get">
+            <fieldset>
+                <legend>Sigurna Prijava</legend>
+
+
+                <p>Korisničko ime</p>
+                <input type="text" name="ime" id="ime" placeholder="admin">
+
+
+
+                <p>Lozinka</p>
+                <div class="zapamti">
+                    <input type="password" name="lozinka" id="lozinka" placeholder="******">
+                </div>
+
+
+
+                <input type="checkbox" name="nacin" id="online" value="online">
+                <label for="online">Zapamti uređaj</label>
+
+
+
+                <button class="gumb">Prijavi se</button>
+
+    </div>
+
+    <h3>Nedavne aktivnosti prijave</h3>
+
+    <div>
+
+        <table>
+
+            <colgroup>
+                <col style="width: 40%;">
+                <col style="width: 30%;">
+                <col style="width: 30%;">
+            </colgroup>
+
+            <thead>
+                <tr>
+                    <th>IP ADRESA</th>
+                    <th>VRIJEME</th>
+                    <th>STATUS</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>192.168.1.15</td>
+                    <td>12:45</td>
+                    <td class="status-uspjeh">Uspjeh</td>
+                </tr>
+                <tr>
+                    <td>10.0.052</td>
+                    <td>Jučer</td>
+                    <td class="status-greška">Greška</td>
+                </tr>
+                <tr>
+
+                    <td>88.102.x.x</td>
+                    <td>01.12</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+
+
+            <tfoot>
+                <tr>
+                    <td rowspan="3">Prikaz zadnja3 pokušaja</td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+</body>
+
+</html>
