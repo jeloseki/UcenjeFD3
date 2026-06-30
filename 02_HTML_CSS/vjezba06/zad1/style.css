@@ -1,0 +1,26 @@
+body{
+    background-color: rgb(226, 222, 222);
+}
+
+.kontejner{
+    margin: 100px auto;
+    padding: 1rem;
+    width: 20%;
+    max-width: 330px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+span{
+    font-weight: bold;
+}
+
+h1{
+color: rgb(2, 53, 71);
+}
+
+h2{
+  color: grey;  
+}

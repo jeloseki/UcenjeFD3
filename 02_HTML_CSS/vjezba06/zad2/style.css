@@ -1,0 +1,41 @@
+body {
+    background-color: rgb(224, 219, 219);
+}
+
+.glavni-kontejner {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 40px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.kontejner {
+    padding: 1rem;
+    text-align: center;
+    border-radius: 10px;
+    background-color: white;
+    border: solid;
+    width: 300px;
+    max-width: 100%;
+    font-family: sans-serif;
+    border-style: hidden;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+h2 {
+    color: green;
+}
+
+button {
+    max-width: 280px;
+    width: 280px;
+    padding: 0.5rem;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    border-color: blue;
+}
