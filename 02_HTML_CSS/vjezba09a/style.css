@@ -1,0 +1,96 @@
+!body {
+    background-color: antiquewhite;
+}
+
+.ploca {
+    border: 1px solid black;
+    min-height: 250px;
+    text-align: justify;
+    padding: 1.5em;
+}
+
+.a {
+    grid-area: a;
+}
+
+.b {
+    grid-area: b;
+}
+
+.c {
+    grid-area: c;
+}
+
+.d {
+    grid-area: d;
+}
+
+.e {
+    grid-area: e;
+}
+
+.f {
+    grid-area: f;
+}
+
+/* Mobitel */
+@media (max-width: 480px) {
+    body {
+        background-color: darkcyan;
+    }
+
+    main {
+        display: grid;
+        grid-template-areas:
+            "c c c"
+            "d d d"
+            "e e e"
+        ;
+    }
+
+    .a,
+    .b,
+    .f {
+        display: none;
+    }
+
+}
+
+/* Tablet */
+@media (min-width: 481px) and (max-width: 800px) {
+    body {
+        background-color: beige;
+    }
+
+    main {
+        display: grid;
+        grid-template-areas:
+            "b b b b b b"
+            "c c c f f f"
+        ;
+    }
+
+    .a,
+    .d,
+    .e {
+        display: none;
+    }
+}
+
+
+/* Desktop */
+@media (min-width: 801px) {
+    body {
+        background-color: chocolate;
+    }
+
+
+    main {
+        display: grid;
+        grid-template-areas:
+            "a b b b b b"
+            "c c d d e e"
+            "f f f f f f"
+        ;
+    }
+}
