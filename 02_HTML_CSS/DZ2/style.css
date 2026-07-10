@@ -67,3 +67,73 @@ label{
     font-size: medium;
 }
 
+
+
+
+h3 {
+    color: #333e48;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: left;
+    margin-left:24rem;
+}
+
+.sredina{
+display: flex;
+justify-content: center;
+
+}
+
+table {
+    width: 60%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 4px;
+    overflow: hidden; 
+}
+
+th {
+    text-align: left;
+    font-size: 18px;
+    font-weight: 800;
+    color: #000000;
+    padding: 14px 16px;
+    background-color: #f1f0f0;
+}
+
+td {
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #000000;
+    font-weight: 500;
+    font-size: medium;
+}
+
+tbody tr:not(:last-child) {
+    border-bottom: 2px solid #eef2f6;
+}
+
+
+tbody tr:last-child td:not(:last-child) {
+    border-bottom: 2px solid #eef2f6;
+}
+
+
+.status-uspjeh {
+    color: #2f855a; 
+    font-weight: 600;
+}
+
+.status-greška {
+    color: #e53e3e; /* Crvena */
+    font-weight: 600;
+}
+
+tfoot td {
+    padding: 16px;
+    font-size: 16px;
+    color: #718096;
+    text-align: center;
+    background-color: #ffffff;
+}

@@ -1,0 +1,7 @@
+1. zadaća -> 02_HTML_CSS/vjezba02/DZ-1-2.png -> edunovaX.origo.hr/zadace/HTML-CSS/Z1/Zadaca.html
+2. zadaća -> 02_HTML_CSS/vjezba03/Zadatak.png -> edunovaX.origo.hr/zadace/HTML-CSS/Z2
+3. zadaća -> 02_HTML_CSS/vjezba04/DZ.png -> edunovaX.origo.hr/zadace/HTML-CSS/Z3/stranica.html
+4. zadaća -> 02_HTML_CSS/vjezba05/Zadaca.png -> edunovaX.origo.hr/zadace/HTML-CSS/Z4
+5. zadaća -> 02_HTML_CSS/vjezba05/Zadaca-1-2-3-4-5.png -> edunovaX.origo.hr/zadace/HTML-CSS/Z5/zadaca.html
+6. zadaća -> 02_HTML_CSS/vjezba11/DZ_Foundation.pdf -> edunovaX.origo.hr/zadace/HTML-CSS/Z6
+7. zadaća -> 02_HTML_CSS/vjezba12/DZ_Bootstrap.pdf -> edunovaX.origo.hr/zadace/HTML-CSS/Z7/FPV
