@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FPV Akademija</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+</head>
+
+<style>
+    /* Privremeni CSS za potrebe testiranja ako ti je app.css prazan */
+    .hero-banner {
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(img/dron4.jpg) no-repeat center center;
+        background-size: cover;
+        color: white !important;
+        padding: 5rem 1rem !important;
+    }
+
+    .orbit-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+
+    .no-margin {
+        margin-bottom: 0 !important;
+    }
+
+    .margin-top-2 {
+        margin-top: 2rem;
+    }
+
+    .padding-vertical-2 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+</style>
+</head>
+
+<body>
+
+    <!-- ========================================== -->
+    <!-- 1. RESPONSIVE TOP BAR (NAVIGACIJA)         -->
+    <!-- ========================================== -->
+    <!-- Hamburger traka vidljiva samo na mobitelima -->
+    <div class="title-bar" data-responsive-toggle="main-menu" data-hide-for="medium">
+        <button class="menu-icon" type="button" data-toggle="main-menu"></button>
+        <div class="title-bar-title">FPV Akademija Meni</div>
+    </div>
+
+    <!-- Glavni Top Bar -->
+    <div class="top-bar" id="main-menu">
+        <div class="top-bar-left">
+            <ul class="vertical medium-horizontal menu" data-responsive-menu="drilldown medium-dropdown">
+                <li class="menu-text">🛸 FPV Akademija</li>
+                <li class="is-active"><a href="index.html">Početna</a></li>
+                <li><a href="program.html">Kurikulum</a></li>
+                <li><a href="kontakt.html">Prijava</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Važna obavijest preko cijele širine ekrana -->
+    <div class="callout alert text-center no-margin">
+        <h5><strong>Prijave su u tijeku!</strong> Broj mjesta za ljetni semestar je ograničen.</h5>
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- 2. GLAVNI RESPONSIVE KONTEJNER (XY GRID)   -->
+    <!-- ========================================== -->
+    <div class="grid-container">
+
+        <!-- RED 1: HERO BANNER (Callout) -->
+        <div class="grid-x grid-padding-x">
+            <!-- cell small-12 znači da na svim ekranima ide preko cijele širine grid-kontejnera -->
+            <div class="cell small-12 margin-top-2">
+                <!-- Dodana klasa text-center koja automatski centrira naslov, tekst i gumb unutar bannera -->
+                <div class="callout large primary text-center hero-banner">
+                    <h1>Postani FPV Pilot</h1>
+                    <p class="lead">Savladaj vještine letenja, sastavljanja dronova i zakorači u svijet simulatora i
+                        STEM-a.</p>
+                    <a href="kontakt.html" class="button large success">Prijavi se odmah</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- RED 2: O PROGRAMU (UVODNI TEKST) -->
+        <div class="grid-x grid-padding-x padding-vertical-2 text-center align-center">
+            <!-- Ovdje ograničavamo tekst na 8 stupaca na većim ekranima radi bolje čitljivosti -->
+            <div class="cell small-12 medium-8">
+                <h2>O programu akademije</h2>
+                <p class="lead">FPV Akademija pruža cjelovito znanje od nule do profesionalnog pilota kroz teoriju,
+                    vježbu u simulatoru i terensku nastavu.</p>
+            </div>
+        </div>
+
+        <!-- RED 3: KARTICE (3 STUPCA) -->
+        <!-- Klasa small-up-1 znači 1 kartica u redu na mobitelu, medium-up-3 znači 3 kartice u redu na tabletu/desktopu -->
+        <div class="grid-x grid-padding-x small-up-1 medium-up-3 text-center">
+            <!-- Kartica 1 -->
+            <div class="cell">
+                <div class="card">
+                    <div class="card-section">
+                        <h4>🛠️ Tehničke vještine</h4>
+                        <p>Nauči sastavljati komponente, konfigurirati softver i popraviti svoj dron nakon pada.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Kartica 2 -->
+            <div class="cell">
+                <div class="card">
+                    <div class="card-section">
+                        <h4>🧠 Kognitivne sposobnosti</h4>
+                        <p>Razvijaj iznimno brze reflekse, prostornu orijentaciju i visoku koncentraciju.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Kartica 3 -->
+            <div class="cell">
+                <div class="card">
+                    <div class="card-section">
+                        <h4>🚀 STEM priprema</h4>
+                        <p>Usklađeno s modernim tehnologijama: aerodinamika, fizika, radio-signali i elektronika.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RED 4: ORBIT SLIDER (GALERIJA SLIKA) -->
+        <div class="grid-x grid-padding-x align-center padding-vertical-2">
+            <!-- Centriramo slider tako da zauzima 8 stupaca na tabletu/desktopu -->
+            <div class="cell small-12 medium-8">
+                <h3 class="text-center">Galerija naših dronova</h3>
+
+                <div class="orbit" role="region" aria-label="FPV Dronovi" data-orbit>
+                    <div class="orbit-wrapper">
+                        <div class="orbit-controls">
+                            <button class="orbit-previous">&#9664;&#xFE0E;<span
+                                    class="show-for-sr">Prethodna</span></button>
+                            <button class="orbit-next">&#9654;&#xFE0E;<span class="show-for-sr">Sljedeća</span></button>
+                        </div>
+                        <ul class="orbit-container">
+                            <li class="is-active orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/dron3.jpg" alt="Dron u letu">
+                                </figure>
+                            </li>
+                            <li class="orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/dron2.jpg" alt="FPV Naočale">
+                                </figure>
+                            </li>
+                            <li class="orbit-slide">
+                                <figure class="orbit-figure">
+                                    <img class="orbit-image" src="img/dron1.jpg" alt="Sastavljanje">
+                                </figure>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div> <!-- KRAJ GLAVNOG KONTEJNERA -->
+
+
+    <!-- ========================================== -->
+    <!-- 3. UKLJUČIVANJE JAVASCRIPT-A              -->
+    <!-- ========================================== -->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.min.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        // Pravilno pokretanje Foundation JavaScripta
+        $(document).ready(function () {
+            $(document).foundation();
+        });
+    </script>
+</body>
+
+</html>
