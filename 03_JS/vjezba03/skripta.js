@@ -49,7 +49,7 @@ rez += 1 // 12
 rez++ // 13 -> ovaj način zapisa se nikada ne bi trebao koristiti sam u liniji
 
 // increment ++ i dekrement -- 
-// imaja dvojaku ulou
+// imaja dvojaku ulogu
 // kada se koristi i ada se uvećava/smanjuje
 
 let i = 0
