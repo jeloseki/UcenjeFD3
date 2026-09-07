@@ -2,7 +2,7 @@ const canvas = document.getElementById('signature-pad');
 const ctx = canvas.getContext('2d');
 const printBtn = document.getElementById('print-btn');
 const clearBtn = document.getElementById('clear-btn');
-const saveBtn = document.getElementById('save-btn');
+// const saveBtn = document.getElementById('save-btn');
 const statusText = document.getElementById('status');
 const dateSpan = document.getElementById('current-date');
 const savedSignaturesContainer = document.getElementById('saved-signatures');
@@ -93,62 +93,62 @@ printBtn.addEventListener('click', () => {
 });
 
 // Spremi potpis u localStorage
-saveBtn.addEventListener('click', () => {
-    // Provjeri je li canvas prazan
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const pixels = imageData.data;
-    let hasContent = false;
+// saveBtn.addEventListener('click', () => {
+//     // Provjeri je li canvas prazan
+//     const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+//     const pixels = imageData.data;
+//     let hasContent = false;
     
-    for (let i = 0; i < pixels.length; i += 4) {
-        if (pixels[i + 3] > 0) {
-            hasContent = true;
-            break;
-        }
-    }
+//     for (let i = 0; i < pixels.length; i += 4) {
+//         if (pixels[i + 3] > 0) {
+//             hasContent = true;
+//             break;
+//         }
+//     }
     
-    if (!hasContent) {
-        alert('Molimo prvo potpišite prije spremanja!');
-        return;
-    }
+//     if (!hasContent) {
+//         alert('Molimo prvo potpišite prije spremanja!');
+//         return;
+//     }
     
-    // Pretvori canvas u sliku (base64)
-    const signatureImage = canvas.toDataURL('image/png');
+//     // Pretvori canvas u sliku (base64)
+//     const signatureImage = canvas.toDataURL('image/png');
     
-    // Dohvati postojeće potpise iz localStorage
-    let signatures = JSON.parse(localStorage.getItem('signatures')) || [];
+//     // Dohvati postojeće potpise iz localStorage
+//     let signatures = JSON.parse(localStorage.getItem('signatures')) || [];
     
-    // Dodaj novi potpis s datumom i vremenom
-    const newSignature = {
-        id: Date.now(),
-        image: signatureImage,
-        date: new Date().toLocaleString('hr-HR')
-    };
+//     // Dodaj novi potpis s datumom i vremenom
+//     const newSignature = {
+//         id: Date.now(),
+//         image: signatureImage,
+//         date: new Date().toLocaleString('hr-HR')
+//     };
     
-    signatures.push(newSignature);
+//     signatures.push(newSignature);
     
-    // Spremi natrag u localStorage
-    localStorage.setItem('signatures', JSON.stringify(signatures));
+//     // Spremi natrag u localStorage
+//     localStorage.setItem('signatures', JSON.stringify(signatures));
     
-    // Osvježi prikaz
-    loadSignatures();
+//     // Osvježi prikaz
+//     loadSignatures();
     
-    // Očisti canvas nakon spremanja
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    checkSignatureCoverage();
+//     // Očisti canvas nakon spremanja
+//     ctx.clearRect(0, 0, canvas.width, canvas.height);
+//     checkSignatureCoverage();
     
-    alert('Potpis uspješno spremljen!');
-});
+//     alert('Potpis uspješno spremljen!');
+// });
 
 // Učitaj i prikaži spremljene potpise
 function loadSignatures() {
     const signatures = JSON.parse(localStorage.getItem('signatures')) || [];
     
-    if (signatures.length === 0) {
-        savedSignaturesContainer.innerHTML = '<p class="no-signatures">Nema spremljenih potpisa</p>';
-        return;
-    }
+    // if (signatures.length === 0) {
+    //     savedSignaturesContainer.innerHTML = '<p class="no-signatures">Nema spremljenih potpisa</p>';
+    //     return;
+    // }
     
-    savedSignaturesContainer.innerHTML = '';
+    // savedSignaturesContainer.innerHTML = '';
     
     // Prikaži potpise od najnovijeg prema najstarijem
     signatures.reverse().forEach(signature => {
