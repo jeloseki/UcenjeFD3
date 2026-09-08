@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<div class="mursa-crawl-separator">
+    <!-- Tamnoplava linija vodilica (#0d233a) -->
+    <div class="mursa-crawl-line"></div>
+    
+    <!-- Animirani M logo koji "pliva" kraul s lijeva na desno -->
+    <div class="mursa-crawl-logo">
+        <svg class="mursa-svg-logo-crawl" viewBox="-40 -60 220 250" xmlns="http://www.w3.org/2000/svg">
+            <!-- GRUPA KOJA DRŽI SVE ZAJEDNO NAGNUTO POD 50 DEG -->
+            <g class="mursa-swimmer-group">
+                
+                <!-- LIJEVA RUKA / KRAK (Spojena na lijevi vrh Y) -->
+                <g class="leg-crawl-left">
+                    <line x1="32" y1="42" x2="32" y2="104" stroke="#d4af37" stroke-width="10" stroke-linecap="round"></line>
+                    <path d="M 22,119 L 32,132 L 42,119" stroke="#d4af37" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                </g>
+
+                <!-- DESNA RUKA / KRAK (Spojena na desni vrh Y) -->
+                <g class="leg-crawl-right">
+                    <line x1="108" y1="42" x2="108" y2="104" stroke="#d4af37" stroke-width="10" stroke-linecap="round"></line>
+                    <path d="M 98,119 L 108,132 L 118,119" stroke="#d4af37" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                </g>
+
+                <!-- SREDIŠNJI Y KOSTUR -->
+                <g class="logo-body-crawl">
+                    <path d="M 34,20 L 70,55 L 106,20 M 70,55 L 70,125" stroke="#d4af37" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                    <path d="M 58,140 L 70,153 L 82,140" stroke="#d4af37" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"></path>
+                </g>
+
+            </g>
+        </svg>
+    </div>
+</div>
+
+<style>
+.mursa-crawl-separator {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    background: transparent;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+/* Tamnoplava linija vodilica (#0d233a) */
+.mursa-crawl-line {
+    position: absolute;
+    top: 60%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        rgba(13, 35, 58, 0.1) 0%, 
+        rgba(13, 35, 58, 1) 50%, 
+        rgba(13, 35, 58, 0.1) 100%);
+    box-shadow: 0 0 10px rgba(13, 35, 58, 0.5);
+}
+
+/* Kretanje cjelokupnog loga s lijeva na desno */
+.mursa-crawl-logo {
+    position: absolute;
+    top: 50%;
+    left: -90px;
+    transform: translateY(-50%);
+    animation: runAcrossCrawl 8s linear infinite;
+}
+
+.mursa-svg-logo-crawl {
+    width: 90px;
+    height: 100px;
+    overflow: visible !important;
+    filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.4));
+    animation: bounceCrawl 0.5s ease-in-out infinite alternate;
+}
+
+/* CJELOKUPNI NAGIB PLIVAČA NAPRIJED (50°) S BLAGIM LJULJANJEM U VODI */
+.mursa-swimmer-group {
+    transform-origin: 70px 75px;
+    transform: rotate(50deg);
+    animation: bodyRollCrawl 0.5s ease-in-out infinite alternate;
+}
+
+/* --- ROTACIJE KRAKOVA OKO ZGLOBOVA Y STRUKTURE --- */
+
+.leg-crawl-left {
+    transform-origin: 34px 20px; /* Zglob na lijevom vrhu Y */
+    animation: rotateCrawl360 1s linear infinite;
+}
+
+.leg-crawl-right {
+    transform-origin: 106px 20px; /* Zglob na desnom vrhu Y */
+    animation: rotateCrawl360 1s linear infinite;
+    animation-delay: -0.5s; /* Suprotna faza rotacije */
+}
+
+/* --- ANIMACIJE --- */
+
+@keyframes runAcrossCrawl {
+    0% { left: -90px; }
+    100% { left: 100%; }
+}
+
+@keyframes bounceCrawl {
+    0% { transform: translateY(-5px); }
+    100% { transform: translateY(5px); }
+}
+
+@keyframes rotateCrawl360 {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Blago radno njihanje cijele nagnute strukture pri zaveslajima */
+@keyframes bodyRollCrawl {
+    0% { transform: rotate(46deg); }
+    100% { transform: rotate(54deg); }
+}
+</style>
+</body>
+
+</html>
