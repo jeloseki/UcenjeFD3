@@ -1,0 +1,176 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 20% 20%, #f4c98b 0 8%, transparent 9%),
+        radial-gradient(circle at 80% 70%, #d97b4a 0 6%, transparent 7%),
+        #f5ead7;
+
+    color: #3e2b23;
+}
+
+/* cijela kartica */
+
+.page {
+    width: 420px;
+    padding: 55px 40px;
+
+    text-align: center;
+
+    background: #fffaf0;
+
+    border: 2px solid #3e2b23;
+    border-radius: 30px;
+
+    box-shadow:
+        12px 12px 0 #3e2b23;
+
+    position: relative;
+}
+
+/* bigl */
+
+.dog {
+    font-size: 100px;
+
+    margin-bottom: 15px;
+
+    filter: drop-shadow(4px 5px 0 #d97b4a);
+
+    animation: dog 3s ease-in-out infinite;
+}
+
+@keyframes dog {
+
+    0%, 100% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(4deg) translateY(-8px);
+    }
+}
+
+/* naslov */
+
+h1 {
+    margin: 0;
+
+    font-size: 42px;
+    font-weight: 900;
+
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    margin-top: 8px;
+
+    color: #9a6750;
+
+    font-size: 15px;
+}
+
+/* counter */
+
+.counter {
+    margin-top: 40px;
+
+    padding: 25px;
+
+    background: #f1dfc3;
+
+    border-radius: 20px;
+
+    border: 2px dashed #9a6750;
+}
+
+.counter-title {
+    font-size: 14px;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    color: #79513f;
+}
+
+.number {
+    margin: 10px 0;
+
+    font-size: 70px;
+    font-weight: 900;
+
+    line-height: 1;
+
+    color: #c65d32;
+}
+
+/* gumbi */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    width: 55px;
+    height: 55px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #3e2b23;
+    color: white;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #c65d32;
+
+    transform:
+        translateY(-4px)
+        rotate(-5deg);
+}
+
+button:active {
+    transform: scale(0.9);
+}
+
+/* mala dekoracija */
+
+.page::before {
+    content: "🍂";
+    position: absolute;
+
+    top: 20px;
+    left: 25px;
+
+    font-size: 28px;
+}
+
+.page::after {
+    content: "🍁";
+    position: absolute;
+
+    bottom: 20px;
+    right: 25px;
+
+    font-size: 28px;
+}
