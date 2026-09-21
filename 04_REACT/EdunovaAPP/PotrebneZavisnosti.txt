@@ -1,0 +1,5 @@
+U terminalu nakon što ste zaustavili aplikaciju [ctrl+c (Y)] izvesti:
+
+npm install bootstrap react-bootstrap
+npm install react-router-dom
+
