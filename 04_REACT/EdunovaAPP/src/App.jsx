@@ -7,19 +7,20 @@ import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import SmjerPregled from './pages/smjerovi/SmjerPregled'
 
+
 function App() {
 
   return (
    <Container>
     <Izbornik />
     <Container className='app'>
-    <Routes>
-     <Route path={RouteNames.HOME} element={<Home />} />
-     <Route path={RouteNames.SMJEROVI} element={<SmjerPregled />} />
-    </Routes>
+      <Routes>
+        <Route path={RouteNames.HOME} element={<Home />} />
+        <Route path={RouteNames.SMJEROVI} element={<SmjerPregled />} />
+      </Routes>
     </Container>
     <hr />
-  &copy; {IME_APLIKACIJE}
+    &copy; {IME_APLIKACIJE}
    </Container>
   )
 }

@@ -5,10 +5,9 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { IME_APLIKACIJE, RouteNames } from '../constants';
 import { useNavigate } from 'react-router-dom';
 
-
 export default function Izbornik() {
 
-const navigate = useNavigate()
+    const navigate = useNavigate()
 
     return (
         <Navbar expand="lg" className="bg-body-tertiary">
@@ -20,10 +19,10 @@ const navigate = useNavigate()
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
                         <Nav.Link 
-                        onClick={()=>navigate(RouteNames.HOME)}
+                        onClick={()=>{navigate(RouteNames.HOME)}}
                         >Početna</Nav.Link>
                         <NavDropdown title="Programi" id="basic-nav-dropdown">
-                            <NavDropdown.Item 
+                            <NavDropdown.Item
                             onClick={()=>navigate(RouteNames.SMJEROVI)}
                             >Smjerovi</NavDropdown.Item>
                         </NavDropdown>

@@ -3,7 +3,7 @@
 export default function Home(){
     return(
         <>
-        Početna stranica, sadržaj dođe kasnije
+            Početna stranica, sadržaj dođe kasnije
         </>
     )
 }
