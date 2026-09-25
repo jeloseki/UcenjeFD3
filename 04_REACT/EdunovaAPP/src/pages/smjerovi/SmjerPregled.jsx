@@ -3,7 +3,8 @@ import SmjerService from "../../services/smjerovi/SmjerService"
 import { Table } from "react-bootstrap"
 import { GrValidate } from "react-icons/gr";
 import { FcApproval, FcDisapprove } from "react-icons/fc";
-
+import { NumericFormat } from "react-number-format";
+import FormatDatuma from "../../components/FormatDatuma";
 
 export default function SmjerPregled() {
 
@@ -38,10 +39,24 @@ export default function SmjerPregled() {
                 <tbody>
                     {smjerovi && smjerovi.map((smjer) => (
                         <tr key={smjer.sifra}>
-                            <td>{smjer.naziv}</td>
-                            <td>{smjer.trajanje}</td>
+                            <td className="lead">{smjer.naziv}</td>
+                            <td className="text-end">{smjer.trajanje}</td>
+                            <td className="desno">
+                                <NumericFormat
+                                    value={smjer.cijena}
+                                    displayType={'text'}
+                                    thousandSeparator='.'
+                                    decimalSeparator=','
+                                    decimalScale={2}
+                                    fixedDecimalScale
+                                    suffix=" €"
+                                    prefix="="
+                                />
+                            </td>
                             <td>{smjer.cijena}</td>
-                            <td>{smjer.datumPokretanja}</td>
+                            <td style={{textAlign: 'center'}}>
+                                <FormatDatuma datum={smjer.datumPokretanja}/>
+                            </td>
                             {/* <td>{smjer.aktivan ? 'DA' : 'NE'}</td> */}
                             <td>
                                 <GrValidate
@@ -50,10 +65,10 @@ export default function SmjerPregled() {
                                 />
 
                                 {smjer.aktivan ? (
-                                   <FcApproval size={25}/>
-                            ) : (
-                                <FcDisapprove size={25}/>
-                            )}
+                                    <FcApproval size={25} />
+                                ) : (
+                                    <FcDisapprove size={25} />
+                                )}
                             </td>
                         </tr>
 
