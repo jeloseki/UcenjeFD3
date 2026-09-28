@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import SmjerService from "../../services/smjerovi/SmjerService"
 import { Table } from "react-bootstrap"
-import { GrValidate } from "react-icons/gr";
-import { FcApproval, FcDisapprove } from "react-icons/fc";
-import { NumericFormat } from "react-number-format";
-import FormatDatuma from "../../components/FormatDatuma";
+import { GrValidate } from "react-icons/gr"
+import { FcApproval, FcDisapprove } from "react-icons/fc"
+import { NumericFormat } from "react-number-format"
+import FormatDatuma from "../../components/FormatDatuma"
+import { Link } from "react-router-dom"
+import { RouteNames } from "../../constants"
+
 
 export default function SmjerPregled() {
 
@@ -25,8 +28,10 @@ export default function SmjerPregled() {
 
     return (
         <>
-
-            <Table hover striped bordered responsive>
+            <Link to={RouteNames.SMJEROVI_NOVI}>
+                Dodavanje novog smjera
+            </Link>
+            <Table hover striped bordered>
                 <thead>
                     <tr>
                         <th>Naziv</th>
@@ -40,8 +45,8 @@ export default function SmjerPregled() {
                     {smjerovi && smjerovi.map((smjer) => (
                         <tr key={smjer.sifra}>
                             <td className="lead">{smjer.naziv}</td>
-                            <td className="text-end">{smjer.trajanje}</td>
-                            <td className="desno">
+                            <td className="text-end">{smjer.trajanje}</td> {/* text-end dolazi iz bootstrap */}
+                            <td className="desno">  {/* desno dolazi iz mog CSS-a */}
                                 <NumericFormat
                                     value={smjer.cijena}
                                     displayType={'text'}
@@ -49,38 +54,38 @@ export default function SmjerPregled() {
                                     decimalSeparator=','
                                     decimalScale={2}
                                     fixedDecimalScale
-                                    suffix=" €"
-                                    prefix="="
+                                    suffix=' €'
+                                    prefix='='
                                 />
                             </td>
-                            <td>{smjer.cijena}</td>
-                            <td style={{textAlign: 'center'}}>
-                                <FormatDatuma datum={smjer.datumPokretanja}/>
+                            <td style={{ textAlign: 'center' }}>
+                                <FormatDatuma datum={smjer.datumPokretanja} />
                             </td>
-                            {/* <td>{smjer.aktivan ? 'DA' : 'NE'}</td> */}
                             <td>
+                                {/* {smjer.aktivan ? 'DA' : 'NE'} */}
+                                {/* Primjer jedne ikone s različitom bojom u osnosu na boolean svojstvo */}
                                 <GrValidate
                                     color={smjer.aktivan ? 'green' : 'red'}
                                     size={25}
                                 />
 
+                                {/* Primjer različitih ikona u osnosu na boolean svojstvo */}
                                 {smjer.aktivan ? (
                                     <FcApproval size={25} />
                                 ) : (
                                     <FcDisapprove size={25} />
                                 )}
+
                             </td>
                         </tr>
-
-
-
                     ))}
                 </tbody>
             </Table>
 
             {/* <pre>
-                {JSON.stringify(smjerovi, null, 2)}
+                {JSON.stringify(smjerovi,null,2)}
             </pre> */}
+
         </>
     )
 }
