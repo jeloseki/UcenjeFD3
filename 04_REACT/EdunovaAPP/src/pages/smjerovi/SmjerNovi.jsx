@@ -63,14 +63,14 @@ export default function SmjerNovi() {
       <hr />
 
 
-      <Row>
+      <Row className="mt-4">
         <Col>
-          <Link to={RouteNames.SMJEROVI}>
+          <Link to={RouteNames.SMJEROVI} className="btn btn-danger">
             Odustani
           </Link>
         </Col>
         <Col>
-          <Button type="submit">
+          <Button type="submit" variant="success">
             Dodaj novi smjer
           </Button>
         </Col>
