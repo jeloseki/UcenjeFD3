@@ -26,8 +26,8 @@ export default function SmjerPromjena() {
     }
     
 
-    async function dodaj(smjer) {
-        await SmjerService.dodaj(smjer).then(()=>{
+    async function promijeni(smjer) {
+        await SmjerService.promijeni(params.sifra, smjer).then(()=>{
             navigate(RouteNames.SMJEROVI)
         })
     }
@@ -35,12 +35,12 @@ export default function SmjerPromjena() {
     function odradiSubmit(e) { // e je event
         e.preventDefault()
         const podaci = new FormData(e.target)
-        dodaj({
+        promijeni({
             naziv: podaci.get('naziv'),
             trajanje: parseInt(podaci.get('trajanje')),
             cijena: parseFloat(podaci.get('cijena')),
             datumPokretanja: new Date(podaci.get('datumPokretanja')).toISOString(),
-            aktivan: podaci.get('aktivan') === 'on'
+            aktivan:aktivan
         })
     }
 
@@ -92,7 +92,7 @@ export default function SmjerPromjena() {
                     </Col>
                     <Col>
                         <Button type="submit" variant="success">
-                            Dodaj novi smjer
+                            Promijeni smjer
                         </Button>
                     </Col>
                 </Row>
