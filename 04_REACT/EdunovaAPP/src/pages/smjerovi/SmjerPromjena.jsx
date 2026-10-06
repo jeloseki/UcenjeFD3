@@ -40,7 +40,7 @@ export default function SmjerPromjena() {
             trajanje: parseInt(podaci.get('trajanje')),
             cijena: parseFloat(podaci.get('cijena')),
             datumPokretanja: new Date(podaci.get('datumPokretanja')).toISOString(),
-            aktivan:aktivan
+            aktivan: aktivan
         })
     }
 
