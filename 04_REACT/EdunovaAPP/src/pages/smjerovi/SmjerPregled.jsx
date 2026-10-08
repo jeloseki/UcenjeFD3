@@ -90,7 +90,7 @@ export default function SmjerPregled() {
                             </td>
                             <td>
                                 <Button onClick={()=>{navigate(`/smjerovi/${smjer.sifra}`)}}>
-                                    Promijeni
+                                    Promjeni
                                 </Button>
                                 &nbsp;&nbsp;
                                 <Button variant="danger" onClick={()=>obrisi(smjer.sifra)}>
