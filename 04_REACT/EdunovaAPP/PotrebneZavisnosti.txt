@@ -14,7 +14,8 @@ npm install @lottiefiles/dotlottie-react
 // za gebneriranje podataka
 npm install @faker-js/faker
 
-
+// za pdf
+npm install jspdf jspdf-autotable
 
 
 
