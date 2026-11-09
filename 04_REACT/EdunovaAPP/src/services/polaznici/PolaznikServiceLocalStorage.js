@@ -53,12 +53,30 @@ async function obrisi(sifra) {
 
 
 // Straničenje - dohvati stranicu polaznika
-async function dohvatiStranicu(stranica = 1, velicinaStranice = 8) {
-    const polaznici = dohvatiSveIzStorage();
+async function dohvatiStranicu(stranica = 1, velicinaStranice = 8, uvjetPretrazivanja='') {
+    let filtriraniPolaznici = dohvatiSveIzStorage();
+
+
+    if (uvjetPretrazivanja && uvjetPretrazivanja.trim() !== '') {
+        const loweruvjetPretrazivanja = uvjetPretrazivanja.toLowerCase().trim();
+        filtriraniPolaznici = filtriraniPolaznici.filter(polaznik => {
+            const ime = (polaznik.ime || '').toLowerCase();
+            const prezime = (polaznik.prezime || '').toLowerCase();
+            const email = (polaznik.email || '').toLowerCase();
+            const oib = (polaznik.oib || '').toLowerCase();
+            
+            return ime.includes(loweruvjetPretrazivanja) ||
+                   prezime.includes(loweruvjetPretrazivanja) ||
+                   email.includes(loweruvjetPretrazivanja) ||
+                   oib.includes(loweruvjetPretrazivanja);
+        });
+    }
+
+
     const pocetniIndeks = (stranica - 1) * velicinaStranice;
     const zavrsniIndeks = pocetniIndeks + velicinaStranice;
-    const stranicenjePodaci = polaznici.slice(pocetniIndeks, zavrsniIndeks);
-    const ukupnoStavki = polaznici.length;
+    const stranicenjePodaci = filtriraniPolaznici.slice(pocetniIndeks, zavrsniIndeks);
+    const ukupnoStavki = filtriraniPolaznici.length;
     const ukupnoStranica = Math.ceil(ukupnoStavki / velicinaStranice);
 
     return {
