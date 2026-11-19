@@ -7,6 +7,7 @@ import useBreakpoint from "../../hooks/useBreakpoint"
 import SmjerPregledGrid from "./SmjerPregledGrid"
 import SmjerPregledTablica from "./SmjerPregledTablica"
 import GrupaService from "../../services/grupe/GrupaService"
+import useLoading from "../../hooks/useLoading"
 
 
 export default function SmjerPregled() {
@@ -14,6 +15,7 @@ export default function SmjerPregled() {
     const [smjerovi, setSmjerovi] = useState([])
     const navigate = useNavigate()
     const sirina = useBreakpoint();
+    const { showLoading, hideLoading } = useLoading()
 
     useEffect(() => {
         //console.log('Došao na pregled smjerova')
@@ -21,9 +23,11 @@ export default function SmjerPregled() {
     }, [])
 
     async function ucitajSmjerove() {
+        showLoading();
         await SmjerService.get().then((odgovor) => {
             //console.table(odgovor.data)
             setSmjerovi(odgovor.data)
+            hideLoading()
         })
     }
 

@@ -1,4 +1,5 @@
 import { DATA_SOURCE } from "../../constants"
+import SmjerServiceFireBase from "./SmjerServiceFireBase"
 import SmjerServiceLocalStorage from "./SmjerServiceLocalStorage"
 import SmjerServiceMemorija from "./SmjerServiceMemorija"
 
@@ -11,6 +12,9 @@ switch (DATA_SOURCE) {
         break
     case 'localStorage':
         Servis = SmjerServiceLocalStorage
+        break
+    case 'firebase':
+        Servis = SmjerServiceFireBase
         break
     default:
         Servis = null
@@ -31,6 +35,6 @@ export default {
     get: () => AktivniServis.get(),
     dodaj: (smjer) => AktivniServis.dodaj(smjer),
     getBySifra: (sifra) => AktivniServis.getBySifra(sifra),
-    promijeni: (sifra, smjer) => AktivniServis.promijeni(sifra,smjer),
+    promijeni: (sifra, smjer) => AktivniServis.promijeni(sifra, smjer),
     obrisi: (sifra) => AktivniServis.obrisi(sifra)
 }

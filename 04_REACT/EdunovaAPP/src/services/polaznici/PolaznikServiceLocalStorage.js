@@ -1,12 +1,12 @@
-const STORAGE_KEY = 'polaznici'
+import { PrefixStorage } from "../../constants";
 
 function dohvatiSveIzStorage() {
-    const podaci = localStorage.getItem(STORAGE_KEY)
+    const podaci = localStorage.getItem(PrefixStorage.POLAZNICI)
     return podaci ? JSON.parse(podaci) : []
 }
 
 function spremiUStorage(podaci){
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(podaci))
+    localStorage.setItem(PrefixStorage.POLAZNICI, JSON.stringify(podaci))
 }
 
 
@@ -41,6 +41,7 @@ async function promijeni(sifra, polaznik) {
     const index = polaznici.findIndex(s => s.sifra === parseInt(sifra))
     polaznici[index] = {...polaznici[index], ...polaznik}
     spremiUStorage(polaznici)
+    spremiSliku({sifra: sifra,slika: polaznik.slika})
 }
 
 
@@ -86,11 +87,42 @@ async function dohvatiStranicu(stranica = 1, velicinaStranice = 8, uvjetPretrazi
     };
 }
 
+async function spremiSliku(entitet) {
+   try {
+    const response = await fetch('/spremiSlika.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        sifra: entitet.sifra,
+        slika: entitet.slika,
+      }),
+    });
+
+    // Prihvat odgovora s backenda
+    const res = await response.json();
+
+    if (!response.ok || !res.success) {
+      throw new Error(res.message || 'Greška prilikom spremanja.');
+    }
+
+    // Uspješan odgovor
+    console.log('Odgovor s backenda:', res);
+    return res;
+  } catch (error) {
+    console.error('API Greška:', error.message);
+    throw error;
+  }
+}
+
+
 export default {
     get,
     dodaj,
     getBySifra,
     promijeni,
     obrisi,
-    dohvatiStranicu
+    dohvatiStranicu,
+    spremiSliku
 };

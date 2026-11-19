@@ -71,6 +71,10 @@ async function dohvatiStranicu(stranica = 1, velicinaStranice = 8,uvjetPretraziv
     };
 }
 
+async function spremiSliku(entitet) {
+    return {poruka: 'Ne radi na memoriji'}
+}
+
 
 export default{
     get,
@@ -78,5 +82,6 @@ export default{
     getBySifra,
     promijeni,
     obrisi,
-    dohvatiStranicu
+    dohvatiStranicu,
+    spremiSliku
 }

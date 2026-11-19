@@ -22,3 +22,21 @@
   color: white;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
+
+@media (max-width: 600px) {
+  .polaznici-grupa{
+    margin-top: 10px;
+  }
+}
+
+
+.loading-spinner-overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.2);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

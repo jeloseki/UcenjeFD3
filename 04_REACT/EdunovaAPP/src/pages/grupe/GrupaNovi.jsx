@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 import GrupaService from "../../services/grupe/GrupaService"
 import SmjerService from "../../services/smjerovi/SmjerService"
 import PolaznikService from "../../services/polaznici/PolaznikService"
+import { ShemaGrupa } from "../../schemas/ShemaGrupa"
 
 export default function GrupaNovi() {
 
@@ -15,6 +16,7 @@ export default function GrupaNovi() {
     const [pretragaPolaznika, setPretragaPolaznika] = useState('')
     const [prikaziAutocomplete, setPrikaziAutocomplete] = useState(false)
     const [odabraniIndex, setOdabraniIndex] = useState(-1)
+    const [errors, setErrors] = useState({});
 
     useEffect(() => {
         ucitajSmjerove()
@@ -51,7 +53,7 @@ export default function GrupaNovi() {
         return polaznici.filter(p =>
             !odabraniPolaznici.find(op => op.sifra === p.sifra) &&
             (p.ime.toLowerCase().includes(pretragaPolaznika.toLowerCase()) ||
-                p.prezime.toLowerCase().includes(pretragaPolaznika.toLowerCase()) )
+                p.prezime.toLowerCase().includes(pretragaPolaznika.toLowerCase()))
         )
     }
 
@@ -71,8 +73,8 @@ export default function GrupaNovi() {
         } else if (e.key === 'ArrowUp') {
             e.preventDefault()
             setOdabraniIndex(prev => {
-                if(prev===0){
-                    return filtriraniPolaznici.length-1
+                if (prev === 0) {
+                    return filtriraniPolaznici.length - 1
                 }
                 return prev > 0 ? prev - 1 : 0
             })
@@ -95,33 +97,37 @@ export default function GrupaNovi() {
         e.preventDefault()
         const podaci = new FormData(e.target)
 
-        if (!podaci.get('naziv') || podaci.get('naziv').trim().length === 0) {
-            alert("Naziv je obavezan i ne smije sadržavati samo razmake!");
-            return;
-        }
+        setErrors({});
+        const objektPodataka = Object.fromEntries(podaci);
+        objektPodataka.polaznici = odabraniPolaznici
+        const rezultat = ShemaGrupa.safeParse(objektPodataka);
+        if (!rezultat.success) {
+            const noveGreske = {};
+            rezultat.error.issues.forEach((issue) => {
+                const kljuc = issue.path[0];
+                if (!noveGreske[kljuc]) {
+                    noveGreske[kljuc] = issue.message;
+                }
+            });
 
-        if (podaci.get('naziv').trim().length < 3) {
-            alert("Naziv grupe mora imati najmanje 3 znaka!");
-            return;
-        }
-
-        if (!podaci.get('smjer') || podaci.get('smjer') === "") {
-            alert("Morate odabrati smjer!");
-            return;
-        }
-
-        const odabraniSmjer = parseInt(podaci.get('smjer'));
-        if (isNaN(odabraniSmjer) || odabraniSmjer <= 0) {
-            alert("Odabrani smjer nije valjan!");
+            setErrors(noveGreske);
             return;
         }
 
         dodaj({
             naziv: podaci.get('naziv'),
-            smjer: odabraniSmjer,
+            smjer: podaci.get('smjer'),
             polaznici: odabraniPolaznici.map(p => p.sifra)
         })
     }
+
+    const ocistiGresku = (nazivPolja) => {
+        if (errors[nazivPolja]) {
+            const noveGreske = { ...errors };
+            delete noveGreske[nazivPolja];
+            setErrors(noveGreske);
+        }
+    };
 
     return (
         <>
@@ -141,14 +147,20 @@ export default function GrupaNovi() {
                                             type="text"
                                             name="naziv"
                                             placeholder="Unesite naziv grupe"
-                                            required
+                                            isInvalid={!!errors.naziv}
+                                            onFocus={() => ocistiGresku('naziv')}
                                         />
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.naziv}
+                                        </Form.Control.Feedback>
                                     </Form.Group>
 
                                     {/* Smjer */}
                                     <Form.Group controlId="smjer" className="mb-3">
                                         <Form.Label className="fw-bold">Smjer</Form.Label>
-                                        <Form.Select name="smjer" required>
+                                        <Form.Select name="smjer"
+                                            isInvalid={!!errors.smjer}
+                                            onFocus={() => ocistiGresku('smjer')}>
                                             <option value="">Odaberite smjer</option>
                                             {smjerovi && smjerovi.map((smjer) => (
                                                 <option key={smjer.sifra} value={smjer.sifra}>
@@ -156,13 +168,16 @@ export default function GrupaNovi() {
                                                 </option>
                                             ))}
                                         </Form.Select>
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.smjer}
+                                        </Form.Control.Feedback>
                                     </Form.Group>
                                 </Card.Body>
                             </Card>
                         </Col>
 
                         {/* Desna strana - Polaznici */}
-                        <Col md={6}>
+                        <Col md={6} className="polaznici-grupa">
                             <Card className="shadow-sm">
                                 <Card.Body>
                                     <Card.Title className="mb-4">Polaznici</Card.Title>
@@ -179,9 +194,16 @@ export default function GrupaNovi() {
                                                 setPrikaziAutocomplete(e.target.value.length > 0)
                                                 setOdabraniIndex(-1)
                                             }}
-                                            onFocus={() => setPrikaziAutocomplete(pretragaPolaznika.length > 0)}
+                                            onFocus={() => {
+                                                setPrikaziAutocomplete(pretragaPolaznika.length > 0)
+                                                ocistiGresku('smjer')
+                                            }}
                                             onKeyDown={handleKeyDown}
+                                            isInvalid={!!errors.polaznici}
                                         />
+                                        <Form.Control.Feedback type="invalid">
+                                            {errors.polaznici}
+                                        </Form.Control.Feedback>
                                         {prikaziAutocomplete && filtrirajPolaznike().length > 0 && (
                                             <div className="position-absolute w-100 bg-white border rounded shadow-sm" style={{ zIndex: 1000, maxHeight: '200px', overflowY: 'auto' }}>
                                                 {filtrirajPolaznike().map((polaznik, index) => (
@@ -242,17 +264,18 @@ export default function GrupaNovi() {
                             </Card>
                         </Col>
                     </Row>
-
-                    <hr className="my-4" />
-
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <Link to={RouteNames.GRUPE} className="btn btn-danger px-4">
-                            Odustani
-                        </Link>
-                        <Button type="submit" variant="success">
-                            Dodaj novu grupu
-                        </Button>
-                    </div>
+                    <Row>
+                        <Col className="mt-4" xs={4}>
+                            <Link to={RouteNames.GRUPE} className="btn btn-danger px-4">
+                                Odustani
+                            </Link>
+                        </Col>
+                        <Col className="mt-4" xs={8} style={{ textAlign: 'right' }}>
+                            <Button type="submit" variant="success">
+                                Dodaj novu grupu
+                            </Button>
+                        </Col>
+                    </Row>
                 </Container>
             </Form>
         </>

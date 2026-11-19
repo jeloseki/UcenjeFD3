@@ -25,6 +25,25 @@ npm install @lordicon/react
 // za rad s slikama
 npm install react-cropper
 
+// za kontrole
+npm install zod
+
+// za hash lozinki
+npm install bcryptjs
+
+
+// grafovi
+npm install highcharts highcharts-react-official
+
+
+// RIVE animacije
+npm install @rive-app/react-canvas
+
+
+
+// rad s firebase
+npm install firebase
+
 
 // Zanimljivije zavisnosti
 "@popperjs/core": "^2.11.6",

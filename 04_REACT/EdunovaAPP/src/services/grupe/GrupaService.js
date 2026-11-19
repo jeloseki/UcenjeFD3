@@ -1,4 +1,5 @@
 import { DATA_SOURCE } from "../../constants"
+import GrupaServiceFireBase from "./GrupaServiceFireBase"
 import GrupaServiceLocalStorage from "./GrupaServiceLocalStorage"
 import GrupaServiceMemorija from "./GrupaServiceMemorija"
 
@@ -11,6 +12,9 @@ switch (DATA_SOURCE) {
         break
     case 'localStorage':
         Servis = GrupaServiceLocalStorage
+        break
+    case 'firebase':
+        Servis = GrupaServiceFireBase
         break
     default:
         Servis = null
