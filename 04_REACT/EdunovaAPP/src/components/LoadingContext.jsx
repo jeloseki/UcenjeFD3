@@ -1,10 +1,12 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
+import { IME_APLIKACIJE } from '../constants';
 
 export const LoadingContext = createContext();
 
 export function LoadingProvider({ children }) {
   const [loading, setLoading] = useState(false);
+  const [naslov, setNaslov] = useState('')
 
   function showLoading() {
     setLoading(true);
@@ -14,10 +16,17 @@ export function LoadingProvider({ children }) {
     setLoading(false);
   }
 
+  function postaviNaslov(naslov){
+    setNaslov(naslov)
+    document.title = naslov + ', ' + IME_APLIKACIJE
+  }
+
   const value = {
     loading,
     showLoading,
     hideLoading,
+    naslov,
+    postaviNaslov
   };
 
   return (

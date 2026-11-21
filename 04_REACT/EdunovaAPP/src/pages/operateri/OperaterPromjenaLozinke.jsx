@@ -4,6 +4,7 @@ import OperaterService from "../../services/operateri/OperaterService"
 import { Form, Button, Row, Col, Container, Card, Alert } from "react-bootstrap"
 import { RouteNames } from "../../constants"
 import { ShemaPromjenaLozinke } from "../../schemas/ShemaOperater"
+import useLoading from "../../hooks/useLoading"
 
 export default function OperaterPromjenaLozinke() {
 
@@ -11,12 +12,16 @@ export default function OperaterPromjenaLozinke() {
     const params = useParams()
     const [operater, setOperater] = useState({})
     const [errors, setErrors] = useState({})
+    const { showLoading, hideLoading, postaviNaslov } = useLoading()
+
+    useEffect(()=>{ postaviNaslov('Promjena lozinke')})
 
     useEffect(() => {
         ucitajOperatera()
     }, [])
 
     async function ucitajOperatera() {
+        showLoading()
         const odgovor = await OperaterService.getBySifra(params.sifra)
         if (!odgovor.success) {
             alert('Operater nije pronađen')
@@ -24,9 +29,11 @@ export default function OperaterPromjenaLozinke() {
             return
         }
         setOperater(odgovor.data)
+        hideLoading()
     }
 
     async function promjeniLozinku(novaLozinka) {
+        showLoading()
         const rezultat = await OperaterService.promjeniLozinku(params.sifra, novaLozinka)
         if (rezultat.success) {
             alert('Lozinka uspješno promijenjena!')
@@ -34,6 +41,7 @@ export default function OperaterPromjenaLozinke() {
         } else {
             alert(rezultat.message || 'Greška pri promjeni lozinke')
         }
+        hideLoading()
     }
 
     function odradiSubmit(e) {

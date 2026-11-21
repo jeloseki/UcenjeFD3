@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 import { ShemaPolaznik } from "../../schemas/ShemaPolaznik";
+import useLoading from "../../hooks/useLoading";
 
 
 
@@ -20,13 +21,18 @@ export default function PolaznikPromjena() {
 
     const [slikaZaCrop, setSlikaZaCrop] = useState(null);
     const cropperRef = useRef(null);
+    const { showLoading, hideLoading, postaviNaslov } = useLoading()
+
+    useEffect(()=>{ postaviNaslov('Promjena polaznika')})
 
 
 
     async function ucitajPolaznika() {
+        showLoading()
         await PolaznikService.getBySifra(params.sifra).then((odgovor) => {
             setPolaznik(odgovor.data)
             setSlikaZaCrop(odgovor.data.slika)
+            hideLoading()
         })
     }
 
@@ -35,9 +41,11 @@ export default function PolaznikPromjena() {
     }, [])
 
     async function promijeni(polaznik) {
+        showLoading()
         await PolaznikService.promijeni(params.sifra, polaznik).then(() => {
-            navigate(RouteNames.POLAZNICI)
+            hideLoading()
         })
+        navigate(RouteNames.POLAZNICI)
     }
 
     function odradiSubmit(e) { // e je event

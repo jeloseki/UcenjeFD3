@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react"
 import GrupaService from "../../services/grupe/GrupaService"
 import SmjerService from "../../services/smjerovi/SmjerService"
-import { Button, Table } from "react-bootstrap"
+import { Table } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import { RouteNames } from "../../constants"
 import { FaEdit, FaFilePdf, FaTrash } from "react-icons/fa"
 import GrupaPDFGenerator from "../../components/GrupaPDFGenerator"
 import PolaznikService from "../../services/polaznici/PolaznikService"
+import useLoading from "../../hooks/useLoading"
+import useModal from "../../hooks/useModal"
 
 
 export default function GrupaPregled() {
@@ -21,11 +23,17 @@ export default function GrupaPregled() {
         podaci: []
     })
     const navigate = useNavigate()
+    const { showLoading, hideLoading, postaviNaslov } = useLoading()
+    const { showModal } = useModal()
+
+    useEffect(()=>{ postaviNaslov('Grupe')})
 
     useEffect(() => {
+        showLoading()
         ucitajSmjerove()
         ucitajPolaznike()
         ucitajGrupe()
+        hideLoading()
     }, [])
 
     async function ucitajGrupe() {
@@ -73,11 +81,12 @@ export default function GrupaPregled() {
     };
 
     async function obrisi(sifra) {
-        if (!confirm('Sigurno obrisati')) {
-            return
-        }
-        await GrupaService.obrisi(sifra)
-        ucitajGrupe()
+        showModal('Sigurno obrisati?', async () => {
+            showLoading()
+            await GrupaService.obrisi(sifra)
+            ucitajGrupe()
+            hideLoading()
+        })
     }
 
     function dohvatiNazivSmjera(sifraSmjera) {
@@ -121,8 +130,8 @@ export default function GrupaPregled() {
             <Table hover striped bordered>
                 <thead>
                     <tr>
-                        <th style={{width: '65%'}}>Naziv</th>
-                        <th style={{width: '35%'}}>Akcija</th>
+                        <th style={{ width: '65%' }}>Naziv</th>
+                        <th style={{ width: '35%' }}>Akcija</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -131,7 +140,7 @@ export default function GrupaPregled() {
                             <td>
 
 
-                                <span style={{fontWeight: 'bold'}}>{grupa.naziv}</span> &nbsp;
+                                <span style={{ fontWeight: 'bold' }}>{grupa.naziv}</span> &nbsp;
                                 <span
                                     title="Broj polaznika"
                                     className="text-center"
@@ -139,7 +148,7 @@ export default function GrupaPregled() {
                                     onMouseEnter={() => handleMouseEnter(grupa.polaznici)}
                                     onMouseMove={handleMouseMove}
                                     onMouseLeave={handleMouseLeave}>({grupa.polaznici.length})</span>,&nbsp;
-                            {dohvatiNazivSmjera(grupa.smjer)}
+                                {dohvatiNazivSmjera(grupa.smjer)}
                             </td>
                             <td>
                                 <FaFilePdf

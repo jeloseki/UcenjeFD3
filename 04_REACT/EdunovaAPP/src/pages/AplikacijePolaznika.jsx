@@ -2,10 +2,16 @@ import { Container, Row, Col, Card, Button, Badge } from 'react-bootstrap';
 import { FaGithub, FaGlobe } from 'react-icons/fa';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import { useEffect } from 'react';
+import useLoading from '../hooks/useLoading';
 
 export default function AplikacijePolaznika() {
 
     const naslov = "Aplikacije polaznika "
+
+    const {postaviNaslov} = useLoading()
+
+    useEffect(()=>{ postaviNaslov('Aplikacije polaznika')})
 
 
     const polazniciFD3 = [
@@ -39,7 +45,7 @@ export default function AplikacijePolaznika() {
             "git": "https://github.com/igorvucko/FootballApp",
             "url": "https://edunova6.origo.hr",
             "aplikacija": "Football APP",
-            "opis": "NAKNADNO"
+            "opis": "Aplikacija za upravljanje nogometnim klubovima, igračima i utakmicama. Vodi evidenciju, prati statistiku i organiziraj svoju ligu."
         },
         {
             "ime": "Tihomir",
@@ -79,7 +85,7 @@ export default function AplikacijePolaznika() {
             "git": "https://github.com/Philpa12th/Stripoteka",
             "url": "https://edunova9.origo.hr",
             "aplikacija": "Stripoteka",
-            "opis": "NAKNADNO"
+            "opis": "Evidencija stripova i serijala na jednom mjestu: što imate, što ste pročitali i koliko zbirka vrijedi."
         },
         {
             "ime": "Linda",
@@ -95,7 +101,7 @@ export default function AplikacijePolaznika() {
             "git": "https://github.com/GoranaAgic/ShoppingLista",
             "url": "https://edunova2.origo.hr",
             "aplikacija": "Shopping lista",
-            "opis": "NAKNADNO"
+            "opis": "Popis za kupnju po trgovinama. Izrađeno na temelju početnog projekta autorice (React + Vite)."
         },
         {
             "ime": "Snježana",
@@ -119,7 +125,7 @@ export default function AplikacijePolaznika() {
             "git": "https://github.com/VedroRey/Drone-Expo",
             "url": "https://edunova12.origo.hr",
             "aplikacija": "Osijek Drone Expo",
-            "opis": "NAKNADNO"
+            "opis": "Organizacija izložbe: izlagači, štandovi i program na jednom mjestu."
         },
         {
             "ime": "Lucija",
@@ -333,16 +339,26 @@ export default function AplikacijePolaznika() {
         <Col>
             <Card className="h-100 shadow-sm" style={{ transition: 'transform 0.2s', borderRadius: '12px', border: '2px dotted gray' }}>
                 <Card.Body className="d-flex flex-column">
+                    
                     <div className="mb-2">
                         <Badge bg="secondary" pill className="fw-normal">
                             {p.prezime} {p.ime}
                         </Badge>
                     </div>
-                    <Card.Title className="flex-grow-1 fw-bold mb-3 mt-2" style={{ fontSize: '1.1rem' }}>
+
+                    <Card.Title className="fw-bold mb-3 mt-1" style={{ fontSize: '1.1rem', minHeight: '2.6rem' }}>
                         {p.aplikacija}
                     </Card.Title>
-                    <object data={p.url} type="text/html" style={{ border: '2px solid black' }}></object>
-                    <div className="d-flex gap-2 border-top pt-3">
+
+                    <div className="mb-3" style={{ height: '160px', border: '2px solid black', overflow: 'hidden', borderRadius: '6px' }}>
+                        <object
+                            data={p.url}
+                            type="text/html"
+                            style={{ width: '100%', height: '100%', display: 'block' }}
+                        />
+                    </div>
+
+                    <div className="d-flex gap-2 pb-3 border-bottom">
                         <Button
                             variant="outline-dark"
                             size="sm"
@@ -362,8 +378,15 @@ export default function AplikacijePolaznika() {
                             <FaGlobe className="me-2" /> Live
                         </Button>
                     </div>
-                    <hr />
-                    <p style={{textAlign: 'justify', fontSize: '0.8rem'}}>
+
+                    <p
+                        className="mt-3 mb-0 flex-grow-1"
+                        style={{
+                            textAlign: 'left', 
+                            fontSize: '0.82rem',
+                            lineHeight: '1.4'
+                        }}
+                    >
                         {p.opis}
                     </p>
                 </Card.Body>
@@ -375,7 +398,7 @@ export default function AplikacijePolaznika() {
     return (
         <Container className="py-1" style={{ backgroundColor: '#fcfcfc' }}>
 
-          
+
 
             <Tabs
                 defaultActiveKey="FD3"

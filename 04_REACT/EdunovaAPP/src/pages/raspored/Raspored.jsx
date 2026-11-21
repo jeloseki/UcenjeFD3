@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
 import './Raspored.css';
+import useLoading from '../../hooks/useLoading';
+
+
 
 // Izvučeni tekst termina u varijablu
 const CLASS_TIME = "17:00 - 19:00";
@@ -32,6 +36,10 @@ export default function Raspored() {
   const currentYear = today.getFullYear();
   const currentMonth = today.getMonth() + 1; // getMonth() vraća 0-11
   const currentDay = today.getDate();
+
+  const { postaviNaslov } = useLoading()
+
+  useEffect(()=>{ postaviNaslov('Raspored')})
 
   // Funkcija koja provjerava je li proslijeđeni dan, mjesec i godina današnji datum
   const isToday = (dayNum, monthName) => {

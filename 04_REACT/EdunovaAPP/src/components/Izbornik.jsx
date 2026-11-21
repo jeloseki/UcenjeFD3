@@ -8,23 +8,26 @@ import { FaMemory } from 'react-icons/fa';
 import { GrServer, GrStatusUnknown, GrVirtualStorage } from 'react-icons/gr';
 import useAuth from '../hooks/useAuth';
 import { Button } from 'react-bootstrap';
+import './Izbornik.scss'
+import useLoading from '../hooks/useLoading';
 
 export default function Izbornik() {
 
     const navigate = useNavigate()
     const { isLoggedIn, logout, authUser } = useAuth()
+    const {naslov} = useLoading()
 
 
     function izvor() {
         switch (DATA_SOURCE) {
             case 'memorija':
-                return <FaMemory title='Memorija' />
+                return <FaMemory title='Memorija' style={{color: 'gray'}} />
             case 'localStorage':
-                return <GrVirtualStorage title='Local storage' />
+                return <GrVirtualStorage title='Local storage' style={{color: 'gray'}}  />
             case 'firebase':
-                return <GrServer title='Firebase' />
+                return <GrServer title='Firebase' style={{color: 'gray'}}  />
             default:
-                return <GrStatusUnknown title='Nepoznato' />
+                return <GrStatusUnknown title='Nepoznato' style={{color: 'gray'}}  />
         }
     }
 
@@ -32,7 +35,7 @@ export default function Izbornik() {
     return (
         <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
             <Container>
-                {izvor()} {IME_APLIKACIJE}
+                {izvor()} <span style={{fontWeight: 'bold'}}>{naslov}</span>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -93,10 +96,12 @@ export default function Izbornik() {
                     <Nav className="ms-auto">
                         <div className="btn-group">
                             {isLoggedIn ? (
+                                <>
                                 <Button
                                     className="me-2"
                                     onClick={() => logout()}
                                 >Logout {authUser.email}</Button>
+                                </>
                             ) : (
                                 <>
                                     <Button
