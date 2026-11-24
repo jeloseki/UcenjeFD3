@@ -44,10 +44,17 @@ export default function NadzornaPloca() {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>',
         },
         accessibility: {
-            enabled: false,
+            enabled: true,
             point: {
                 valueSuffix: '%',
             },
+            description: 'Kružni grafikon koji prikazuje broj polaznika po pojedinoj nastavnoj grupi.',
+        },
+        lang: {
+            accessibility: {
+                chartContainerLabel: 'Grafikon: Broj polaznika po grupi',
+                svgContainerLabel: 'Interaktivni grafikon',
+            }
         },
         plotOptions: {
             pie: {

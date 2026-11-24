@@ -45,7 +45,7 @@ export default function AplikacijePolaznika() {
             "git": "https://github.com/igorvucko/FootballApp",
             "url": "https://edunova6.origo.hr",
             "aplikacija": "Football APP",
-            "opis": "Aplikacija za upravljanje nogometnim klubovima, igračima i utakmicama. Vodi evidenciju, prati statistiku i organiziraj svoju ligu."
+            "opis": "FootballApp je React SPA za upravljanje klubovima, igračima i utakmicama. Podržava potpuni CRUD, veze 1:n i n:n, pretraživanje, filtriranje i prijavu korisnika, s podacima u localStorage."
         },
         {
             "ime": "Tihomir",
@@ -82,7 +82,7 @@ export default function AplikacijePolaznika() {
         {
             "ime": "Luna",
             "prezime": "Damjanić",
-            "git": "https://github.com/Philpa12th/Stripoteka",
+            "git": "https://github.com/Philpa12th/projekt",
             "url": "https://edunova9.origo.hr",
             "aplikacija": "Stripoteka",
             "opis": "Evidencija stripova i serijala na jednom mjestu: što imate, što ste pročitali i koliko zbirka vrijedi."
@@ -346,36 +346,50 @@ export default function AplikacijePolaznika() {
                         </Badge>
                     </div>
 
-                    <Card.Title className="fw-bold mb-3 mt-1" style={{ fontSize: '1.1rem', minHeight: '2.6rem' }}>
+                    <Card.Title as="h2" className="fw-bold mb-3 mt-1" style={{ fontSize: '1.1rem', minHeight: '2.6rem' }}>
                         {p.aplikacija}
                     </Card.Title>
 
-                    <div className="mb-3" style={{ height: '160px', border: '2px solid black', overflow: 'hidden', borderRadius: '6px' }}>
+                    <div
+                        className="mb-3"
+                        style={{ height: '160px', border: '2px solid black', overflow: 'hidden', borderRadius: '6px' }}
+                        aria-hidden="true"
+                    >
                         <object
                             data={p.url}
                             type="text/html"
+                            title={`Pregled aplikacije ${p.aplikacija}`}
+                            aria-label={`Pregled aplikacije ${p.aplikacija} od ${p.ime} ${p.prezime}`}
                             style={{ width: '100%', height: '100%', display: 'block' }}
-                        />
+                        >
+                            <span className="visually-hidden">Pregled aplikacije nije dostupan</span>
+                        </object>
                     </div>
 
                     <div className="d-flex gap-2 pb-3 border-bottom">
                         <Button
+                            as="a"
                             variant="outline-dark"
                             size="sm"
                             href={p.git}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="w-100 d-flex align-items-center justify-content-center"
+                            aria-label={`GitHub repozitorij aplikacije ${p.aplikacija} (otvara se u novom prozoru)`}
                         >
-                            <FaGithub className="me-2" /> GitHub
+                            <FaGithub className="me-2" aria-hidden="true" /> GitHub
                         </Button>
                         <Button
+                            as="a"
                             variant="primary"
                             size="sm"
                             href={p.url}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="w-100 d-flex align-items-center justify-content-center"
+                            aria-label={`Live verzija aplikacije ${p.aplikacija} (otvara se u novom prozoru)`}
                         >
-                            <FaGlobe className="me-2" /> Live
+                            <FaGlobe className="me-2" aria-hidden="true" /> Live
                         </Button>
                     </div>
 

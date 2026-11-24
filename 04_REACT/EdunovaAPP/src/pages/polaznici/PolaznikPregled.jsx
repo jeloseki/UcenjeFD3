@@ -17,7 +17,7 @@ export default function PolaznikPregled() {
     const [ukupnoStranica, postaviUkupnoStranica] = useState(0)
     const [ukupnoStavki, postaviUkupnoStavki] = useState(0)
     const [uvjetPretrazivanja, setUvjetPretrazivanja] = useState('')
-    const velicinaStranice = 4
+    const velicinaStranice = 8
     const sirina = useBreakpoint();
     const { showLoading, hideLoading, postaviNaslov } = useLoading()
     const { showModal } = useModal()
@@ -72,15 +72,16 @@ export default function PolaznikPregled() {
                 Dodavanje novog polaznika
             </Link>
 
-            <InputGroup className="mb-3">
-                <InputGroup.Text>
-                    <FaSearch />
+            <InputGroup className="mb-3" role="search">
+                <InputGroup.Text aria-hidden="true">
+                    <FaSearch aria-hidden="true" />
                 </InputGroup.Text>
                 <Form.Control
-                    type="text"
+                    type="search"
                     placeholder="Pretraži polaznike (ime, prezime, email, OIB)..."
                     value={uvjetPretrazivanja}
                     onChange={promjeniUvjetPretrazivanja}
+                    aria-label="Pretraži polaznike po imenu, prezimenu, emailu ili OIB-u"
                 />
             </InputGroup>
 
@@ -88,7 +89,7 @@ export default function PolaznikPregled() {
 
             {['xs'].includes(sirina) && ukupnoStranica > 1 && (
                 <div className="d-flex justify-content-center">
-                    <Pagination>
+                    <Pagination aria-label="Navigacija stranicama">
                         <Pagination.First
                             onClick={() => promijeniStranicu(1)}
                             disabled={trenutnaStranica === 1}
@@ -126,10 +127,12 @@ export default function PolaznikPregled() {
                         <Pagination.Next
                             onClick={() => promijeniStranicu(trenutnaStranica + 1)}
                             disabled={trenutnaStranica === ukupnoStranica}
+                            aria-label="Sljedeća stranica"
                         />
                         <Pagination.Last
                             onClick={() => promijeniStranicu(ukupnoStranica)}
                             disabled={trenutnaStranica === ukupnoStranica}
+                            aria-label="Zadnja stranica"
                         />
                     </Pagination>
                 </div>
@@ -146,6 +149,7 @@ export default function PolaznikPregled() {
                                 <Card.Img
                                     variant="top"
                                     src={polaznik.slika}
+                                    alt={`Fotografija polaznika ${polaznik.ime} ${polaznik.prezime}`}
                                     style={{
                                         objectFit: "cover",
                                         height: "100%",
@@ -168,15 +172,16 @@ export default function PolaznikPregled() {
                                         variant="outline-primary"
                                         className="flex-fill"
                                         onClick={() => navigate(`/polaznici/${polaznik.sifra}`)}
-                                        title="Promjeni">
-                                        <FaEdit />
+                                        aria-label={`Uredi polaznika ${polaznik.ime} ${polaznik.prezime}`}
+                                    >
+                                        <FaEdit aria-hidden="true" />
                                     </Button>
                                     <Button
                                         variant="outline-danger"
                                         onClick={() => brisanje(polaznik.sifra)}
-                                        title="Obriši"
+                                        aria-label={`Obriši polaznika ${polaznik.ime} ${polaznik.prezime}`}
                                     >
-                                        <FaTrash />
+                                        <FaTrash aria-hidden="true" />
                                     </Button>
                                 </div>
                             </Card.Body>
@@ -187,14 +192,16 @@ export default function PolaznikPregled() {
 
             {ukupnoStranica > 1 && (
                 <div className="d-flex justify-content-center">
-                    <Pagination>
+                    <Pagination aria-label="Navigacija stranicama">
                         <Pagination.First
                             onClick={() => promijeniStranicu(1)}
                             disabled={trenutnaStranica === 1}
+                            aria-label="Prva stranica"
                         />
                         <Pagination.Prev
                             onClick={() => promijeniStranicu(trenutnaStranica - 1)}
                             disabled={trenutnaStranica === 1}
+                            aria-label="Prethodna stranica"
                         />
 
                         {[...Array(ukupnoStranica)].map((_, indeks) => {

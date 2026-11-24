@@ -70,7 +70,7 @@ export default function Home() {
         <Row>
             <Col md={6}>
             <div style={{ textAlign: 'center' }}>
-                <img src={slika} />
+                <img src={slika} alt="Edunova logotip" />
             </div>
             <p className="lead m-5 text-center">Dobrodošli na {IME_APLIKACIJE}</p>
             <div style={{maxWidth: '500px', margin: 'auto'}}>
@@ -82,13 +82,13 @@ export default function Home() {
             </div>
             </Col>
             <Col className="d-flex align-items-center justify-content-center">
-                <div style={{ width: '100%', maxWidth: '400px' }}>
+                <div style={{ width: '100%', maxWidth: '400px' }} role="region" aria-label="Statistike aplikacije">
                     <Card className="mb-3 shadow-lg border-0 statistikaPanel">
                         <Card.Body className="text-center">
                             <p className="text-white">Smjerovi</p>
-                            <div className="statistikaTekst">
-                                <LordIcon src="/lordicon/smjer.json" trigger="hover" /> {animatedSmjerovi}
-                                   &nbsp;<LordIcon src="/lordicon/smjer.json" trigger="hover" />
+                            <div className="statistikaTekst" aria-label={`Broj smjerova: ${animatedSmjerovi}`}>
+                                <LordIcon src="/lordicon/smjer.json" trigger="hover" aria-hidden="true" /> {animatedSmjerovi}
+                                   &nbsp;<LordIcon src="/lordicon/smjer.json" trigger="hover" aria-hidden="true" />
                             </div>
                         </Card.Body>
                     </Card>
@@ -96,10 +96,10 @@ export default function Home() {
                     <Card className="mb-3 shadow-lg border-0 statistikaPanel">
                         <Card.Body className="text-center">
                             <p className="text-white">Polaznici</p>
-                            <div className="statistikaTekst">
-                                <LordIcon style={{ width: 80, height: 80 }} src="/lordicon/polaznik.json" trigger="hover" />
+                            <div className="statistikaTekst" aria-label={`Broj polaznika: ${animatedPolaznici}`}>
+                                <LordIcon style={{ width: 80, height: 80 }} src="/lordicon/polaznik.json" trigger="hover" aria-hidden="true" />
                                     {animatedPolaznici}
-                                    &nbsp;<LordIcon  style={{ width: 80, height: 80 }}  src="/lordicon/polaznik.json" trigger="hover" />
+                                    &nbsp;<LordIcon style={{ width: 80, height: 80 }} src="/lordicon/polaznik.json" trigger="hover" aria-hidden="true" />
                             </div>
                         </Card.Body>
                     </Card>
@@ -107,10 +107,10 @@ export default function Home() {
                     <Card className="shadow-lg border-0 statistikaPanel">
                         <Card.Body className="text-center">
                             <p className="text-white">Grupe</p>
-                            <div className="statistikaTekst">
-                                 <LordIcon style={{ width: 60, height: 60 }} src="/lordicon/grupa.json" trigger="hover" />
+                            <div className="statistikaTekst" aria-label={`Broj grupa: ${animatedGrupe}`}>
+                                <LordIcon style={{ width: 60, height: 60 }} src="/lordicon/grupa.json" trigger="hover" aria-hidden="true" />
                                 {animatedGrupe}
-                                &nbsp;<LordIcon style={{ width: 60, height: 60 }} src="/lordicon/grupa.json" trigger="hover" />
+                                &nbsp;<LordIcon style={{ width: 60, height: 60 }} src="/lordicon/grupa.json" trigger="hover" aria-hidden="true" />
                             </div>
                         </Card.Body>
                     </Card>
